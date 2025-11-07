@@ -1,0 +1,419 @@
+:root {
+  --banner-width: 14000px;
+  --banner-height: 1450px;
+  --preview-scale: 0.07;
+  --bg-dark: #07070c;
+  --glow-red: #ff2748;
+  --glow-amber: #ff7330;
+  --glow-purple: #7f1dff;
+  --metal-base: #f5f5f7;
+  --metal-shadow: #a4a4b0;
+  --text-secondary: rgba(255, 255, 255, 0.78);
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Rajdhani", system-ui, sans-serif;
+  background: radial-gradient(circle at 20% 20%, rgba(120, 0, 0, 0.4), transparent),
+    radial-gradient(circle at 80% 10%, rgba(255, 40, 60, 0.15), transparent),
+    linear-gradient(135deg, #050507, #09010f 44%, #130004);
+  color: #f7f7ff;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 4rem 1.5rem 6rem;
+}
+
+body.full-scale {
+  --preview-scale: 0.14;
+  background: linear-gradient(160deg, #050306, #12000f);
+}
+
+main {
+  width: min(1600px, 100%);
+  display: grid;
+  gap: 4rem;
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  border: 1px solid rgba(255, 78, 94, 0.4);
+  padding: 3.5rem clamp(2rem, 5vw, 4.5rem);
+  background: linear-gradient(120deg, rgba(35, 0, 0, 0.65), rgba(10, 0, 20, 0.9));
+}
+
+.hero-overlay::before,
+.hero-overlay::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(circle at 20% 40%, rgba(255, 64, 32, 0.35), transparent 65%);
+  filter: blur(60px);
+  animation: pulse 8s infinite;
+}
+
+.hero-overlay::after {
+  inset: -15%;
+  background: radial-gradient(circle at 70% 30%, rgba(110, 0, 220, 0.35), transparent 60%);
+  animation-delay: 2s;
+}
+
+.hero-content {
+  position: relative;
+  display: grid;
+  gap: 1.25rem;
+  z-index: 1;
+}
+
+.tagline {
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.hero h1 {
+  font-family: "Orbitron", "Rajdhani", sans-serif;
+  font-size: clamp(2.75rem, 4vw, 3.65rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 0;
+  color: #fff4f6;
+  text-shadow: 0 0 26px rgba(255, 28, 64, 0.72);
+}
+
+.description {
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 42ch;
+}
+
+.banner-gallery {
+  display: grid;
+  gap: 3rem;
+}
+
+.banner-card {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.banner-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.banner {
+  position: relative;
+  width: var(--banner-width);
+  height: var(--banner-height);
+  transform-origin: top left;
+  transform: scale(var(--preview-scale));
+  border-radius: calc(70px * var(--preview-scale));
+  border: calc(12px * var(--preview-scale)) solid rgba(255, 40, 54, 0.7);
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 30%, rgba(255, 39, 72, 0.3), rgba(22, 0, 10, 0.9));
+  box-shadow: 0 0 calc(120px * var(--preview-scale)) rgba(255, 24, 48, 0.8),
+    0 0 calc(300px * var(--preview-scale)) rgba(100, 0, 0, 0.65);
+}
+
+.banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 180, 120, 0.06), transparent 55%);
+  mix-blend-mode: screen;
+}
+
+.banner-copy {
+  position: absolute;
+  inset: calc(320px * var(--preview-scale)) calc(520px * var(--preview-scale));
+  display: grid;
+  gap: calc(60px * var(--preview-scale));
+  text-transform: uppercase;
+  z-index: 6;
+}
+
+.character {
+  font-family: "Orbitron", "Rajdhani", sans-serif;
+  font-size: calc(720px * var(--preview-scale));
+  letter-spacing: calc(40px * var(--preview-scale));
+  color: #faf9ff;
+  text-shadow: 0 0 calc(120px * var(--preview-scale)) rgba(255, 51, 85, 0.95),
+    0 0 calc(220px * var(--preview-scale)) rgba(255, 70, 110, 0.85);
+  filter: drop-shadow(0 0 calc(140px * var(--preview-scale)) rgba(255, 47, 86, 0.75));
+}
+
+.callout {
+  font-size: calc(330px * var(--preview-scale));
+  letter-spacing: calc(260px * var(--preview-scale));
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.68);
+  text-shadow: 0 0 calc(110px * var(--preview-scale)) rgba(255, 57, 80, 0.7);
+}
+
+.banner-notes {
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.65);
+  max-width: 60ch;
+}
+
+.energy {
+  position: absolute;
+  border-radius: 50%;
+  mix-blend-mode: screen;
+}
+
+.energy-front {
+  inset: calc(-1200px * var(--preview-scale))
+    calc(-2100px * var(--preview-scale))
+    auto auto;
+  width: calc(5200px * var(--preview-scale));
+  height: calc(5200px * var(--preview-scale));
+  background: radial-gradient(circle, rgba(255, 76, 110, 0.9), rgba(90, 0, 18, 0.1));
+  filter: blur(calc(60px * var(--preview-scale)));
+  animation: pulse 8s ease-in-out infinite;
+}
+
+.energy-mid {
+  inset: auto calc(-1200px * var(--preview-scale)) calc(-1600px * var(--preview-scale)) auto;
+  width: calc(4600px * var(--preview-scale));
+  height: calc(4600px * var(--preview-scale));
+  background: radial-gradient(circle, rgba(255, 120, 54, 0.6), transparent 70%);
+  filter: blur(calc(180px * var(--preview-scale)));
+  animation: drift 12s ease-in-out infinite;
+}
+
+.energy-back {
+  inset: calc(-1800px * var(--preview-scale)) auto auto calc(-1900px * var(--preview-scale));
+  width: calc(6200px * var(--preview-scale));
+  height: calc(6200px * var(--preview-scale));
+  background: radial-gradient(circle at 50% 60%, rgba(255, 0, 100, 0.35), transparent 80%);
+  filter: blur(calc(180px * var(--preview-scale)));
+  animation: pulse 10s ease-in-out infinite alternate;
+}
+
+.character-glow {
+  position: absolute;
+  inset: calc(200px * var(--preview-scale));
+  background: radial-gradient(circle at 60% 40%, rgba(255, 110, 60, 0.85), transparent 65%);
+  mix-blend-mode: overlay;
+  filter: blur(calc(180px * var(--preview-scale)));
+  z-index: 2;
+  opacity: 0.9;
+}
+
+.lightning,
+.lightning::before,
+.lightning::after {
+  position: absolute;
+  content: "";
+  inset: 0;
+  background:
+    conic-gradient(from 220deg at 60% 50%, rgba(255, 120, 80, 0) 0deg, rgba(255, 196, 140, 0.65) 18deg, rgba(255, 0, 0, 0) 50deg),
+    linear-gradient(120deg, rgba(255, 255, 255, 0.12), rgba(255, 0, 0, 0));
+  mix-blend-mode: screen;
+  opacity: 0.55;
+}
+
+.lightning::before {
+  background:
+    linear-gradient(100deg, rgba(255, 255, 255, 0.08), transparent 40%),
+    linear-gradient(35deg, rgba(255, 80, 120, 0.6), transparent 60%);
+  transform: scale(1.2) rotate(6deg);
+  filter: blur(calc(140px * var(--preview-scale)));
+}
+
+.lightning::after {
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 80, 120, 0.52) 0,
+      rgba(255, 0, 30, 0.01) calc(120px * var(--preview-scale))
+    ),
+    linear-gradient(215deg, rgba(255, 255, 255, 0.12), transparent 65%);
+  transform: scale(1.3) rotate(-4deg);
+  filter: blur(calc(110px * var(--preview-scale)));
+  opacity: 0.42;
+}
+
+.ember-field {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 30% 70%, rgba(255, 160, 90, 0.12), transparent 65%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cg fill='rgba(255,120,60,0.4)'%3E%3Ccircle cx='26' cy='30' r='2.6'/%3E%3Ccircle cx='90' cy='14' r='2.0'/%3E%3Ccircle cx='140' cy='60' r='1.6'/%3E%3Ccircle cx='186' cy='140' r='2.1'/%3E%3Ccircle cx='64' cy='150' r='2.3'/%3E%3Ccircle cx='120' cy='190' r='1.9'/%3E%3Ccircle cx='10' cy='96' r='1.8'/%3E%3Ccircle cx='90' cy='120' r='2.2'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: cover, auto;
+  animation: ember-drift 14s linear infinite;
+  mix-blend-mode: screen;
+  opacity: 0.75;
+  z-index: 3;
+}
+
+.banner-card.obito .banner {
+  background: radial-gradient(circle at 48% 38%, rgba(220, 20, 90, 0.45), rgba(12, 0, 20, 0.95));
+}
+
+.banner-card.obito .character-glow {
+  background: radial-gradient(circle at 58% 35%, rgba(255, 18, 74, 0.9), transparent 65%);
+}
+
+.banner-card.naruto .banner {
+  background: radial-gradient(circle at 50% 45%, rgba(255, 110, 40, 0.45), rgba(18, 0, 0, 0.95));
+}
+
+.banner-card.naruto .character-glow {
+  background: radial-gradient(circle at 48% 40%, rgba(255, 190, 70, 0.85), transparent 65%);
+}
+
+.banner-card.madara .banner {
+  background: radial-gradient(circle at 52% 35%, rgba(255, 24, 50, 0.58), rgba(8, 0, 14, 0.96));
+}
+
+.banner-card.madara .character-glow {
+  background: radial-gradient(circle at 54% 42%, rgba(120, 0, 255, 0.68), transparent 68%);
+}
+
+.banner-card.kakashi .banner {
+  background: radial-gradient(circle at 50% 35%, rgba(220, 70, 255, 0.42), rgba(10, 0, 22, 0.95));
+}
+
+.banner-card.kakashi .character-glow {
+  background: radial-gradient(circle at 52% 43%, rgba(120, 0, 255, 0.65), transparent 72%);
+}
+
+.cta {
+  display: grid;
+  gap: 1.25rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.cta button {
+  justify-self: center;
+  background: linear-gradient(120deg, rgba(255, 70, 110, 0.6), rgba(255, 12, 34, 0.8));
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 0.85rem 2.75rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 18px 36px rgba(255, 40, 60, 0.35);
+}
+
+.cta button:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 22px 44px rgba(255, 70, 90, 0.45);
+}
+
+.cta button:active {
+  transform: translateY(0);
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes drift {
+  0% {
+    transform: translate(-6%, 2%) scale(0.98);
+  }
+  50% {
+    transform: translate(4%, -4%) scale(1.03);
+  }
+  100% {
+    transform: translate(-5%, 3%) scale(0.97);
+  }
+}
+
+@keyframes ember-drift {
+  0% {
+    background-position: 0 0, 0 0;
+    opacity: 0.6;
+  }
+  50% {
+    background-position: 12% -6%, 55% 60%;
+    opacity: 0.85;
+  }
+  100% {
+    background-position: 0 0, 0 0;
+    opacity: 0.65;
+  }
+}
+
+@media (max-width: 960px) {
+  :root {
+    --preview-scale: 0.05;
+  }
+
+  body.full-scale {
+    --preview-scale: 0.09;
+  }
+
+  .hero {
+    border-radius: 24px;
+    padding: 3rem 2rem;
+  }
+
+  .banner-meta {
+    font-size: 0.75rem;
+  }
+
+  .description {
+    max-width: none;
+  }
+}
+
+@media (max-width: 680px) {
+  :root {
+    --preview-scale: 0.036;
+  }
+
+  body {
+    padding: 2.5rem 1rem 4rem;
+  }
+
+  body.full-scale {
+    --preview-scale: 0.072;
+  }
+
+  main {
+    gap: 3rem;
+  }
+
+  .banner-gallery {
+    gap: 2.6rem;
+  }
+
+  .cta button {
+    width: 100%;
+    padding: 1rem 2rem;
+  }
+}
